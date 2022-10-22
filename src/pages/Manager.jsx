@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PlayerOrder } from "../Data";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  selectCount,
-} from "../redux/counterSlice";
+import { next, prev, init } from "../redux/playerlistSlice";
 import { DefaultButton } from "../styles/Buttons";
 
 const Manager = () => {
   const players = PlayerOrder;
-  const count = useSelector((state) => state.player.value);
-  console.log(count);
+  const orderNum = useSelector((state) => state.playerlist.orderNum);
+
   const dispatch = useDispatch();
 
   const [currentOrderNumber, setCurrentOrderNumber] = useState(0);
@@ -36,20 +30,20 @@ const Manager = () => {
           <h1 className="text-2xl font-medium">심판 화면 컨트롤</h1>
           <div className="flex">
             <span>현재 심사 선수 :</span>
-            <span>{players[count].name}</span>
+            <span>{players[orderNum].name}</span>
           </div>
           <div className="flex">
             <button
               type="button"
               className={DefaultButton({ type: "default" })}
-              onClick={() => dispatch(decrement())}
+              onClick={() => dispatch(prev())}
             >
               이전선수
             </button>
             <button
               type="button"
               className={DefaultButton({ type: "default" })}
-              onClick={() => dispatch(increment())}
+              onClick={() => dispatch(next())}
             >
               다음선수
             </button>

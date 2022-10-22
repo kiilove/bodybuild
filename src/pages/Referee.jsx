@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const Referee = () => {
-  const count = useSelector((state) => state.player.value);
+  const count = useSelector((state) => state.playerlist.orderNum);
   return <div>{count}</div>;
 };
 
