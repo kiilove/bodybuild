@@ -8,10 +8,24 @@ import Display from "./pages/Display";
 import Referee from "./pages/Referee";
 import { playerStore } from "./redux/stores";
 import { Provider } from "react-redux";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
+const isLogin = true;
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={playerStore}>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={isLogin ? <Home /> : <Navigate replace to="/login" />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/manager" element={<Manager />} />
+        <Route path="/display" element={<Display />} />
+        <Route path="/referee" element={<Referee />} />
+      </Routes>
+    </BrowserRouter>
   </Provider>
 );
