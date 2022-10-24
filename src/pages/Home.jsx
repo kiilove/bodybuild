@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ManagerLogin from "../components/ManagerLogin";
 import { DefaultButton, OutlineButton } from "../styles/Buttons";
 
 const Home = () => {
@@ -48,7 +49,9 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <div className="flex">로그인</div>
+        <div className="flex">
+          <ManagerLogin />
+        </div>
       </div>
     </div>
   );
