@@ -1,14 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PlayerOrder } from "../Data";
-import {
-  addDoc,
-  collection,
-  doc,
-  setDoc,
-  query,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 const handlePlayerUpdate = async (props) => {
