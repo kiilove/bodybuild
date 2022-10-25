@@ -1,10 +1,39 @@
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import reverse from "../img/logo/reverse.png";
 import { DefaultButton } from "../styles/Buttons";
+import { useDispatch } from "react-redux";
+import { isLogin } from "../redux/loginSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const [inputs, setIputs] = useState({ email: "", password: "" });
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginError, setLoginError] = useState({ status: false });
+
+  const handleInputs = (e) => {
+    setIputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const handelLogin = async () => {
+    try {
+      const auth = getAuth();
+      const { user } = await signInWithEmailAndPassword(
+        auth,
+        inputs.email,
+        inputs.password
+      );
+      const { email } = user;
+      setLoginEmail(email);
+      dispatch(isLogin({ email: email, group: "isAdmin" }));
+    } catch (error) {
+      setLoginError({ status: true, code: error.code, msg: error.message });
+      //console.log(loginError);
+    }
+  };
+
   return (
     <div className="bg-gradient-to-l from-yellow-600 to-red-600 w-full h-screen flex justify-center align-middle items-center flex-col">
       <div className="flex w-1/2  justify-center align-top item-center flex-col gap-y-10 flex-wrap box-border">
@@ -31,8 +60,13 @@ const Login = () => {
             <div className="flex w-full">
               <input
                 type="text"
+                name="email"
                 className="border-0 bg-transparent outline-none text-white text-sm font-semibold placeholder:text-white w-full ml-2"
                 placeholder="이메일"
+                value={inputs.email}
+                onChange={(e) => {
+                  handleInputs(e);
+                }}
               />
             </div>
           </div>
@@ -50,8 +84,13 @@ const Login = () => {
             <div className="flex w-full">
               <input
                 type="password"
+                name="password"
                 className="border-0 bg-transparent outline-none text-white text-sm font-semibold placeholder:text-white w-full ml-2"
                 placeholder="•••••••••"
+                value={inputs.password}
+                onChange={(e) => {
+                  handleInputs(e);
+                }}
               />
             </div>
           </div>
@@ -59,6 +98,9 @@ const Login = () => {
             <div className="flex w-1/3">
               <button
                 className={DefaultButton({ type: "red", extra: "w-full mr-0" })}
+                onClick={() => {
+                  handelLogin();
+                }}
               >
                 로그인
               </button>
