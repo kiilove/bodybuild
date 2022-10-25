@@ -11,7 +11,8 @@ export const loginActionSlice = createSlice({
     isLogin: (state, action) => {
       // state.email = action.email;
       // state.group = action.group;
-      state = action.payload;
+      state.email = action.payload.email;
+      state.group = action.payload.group;
     },
   },
 });
