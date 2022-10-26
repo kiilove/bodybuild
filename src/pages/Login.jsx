@@ -4,15 +4,21 @@ import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import reverse from "../img/logo/reverse.png";
 import { DefaultButton } from "../styles/Buttons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isLogin } from "../redux/loginSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [inputs, setIputs] = useState({ email: "", password: "" });
   const [loginEmail, setLoginEmail] = useState("");
   const [loginError, setLoginError] = useState({ status: false });
+  const loginUserInfo = useSelector((state) => {
+    return { email: state.loginAction.email, group: state.loginAction.group };
+  });
+  const navigate = useNavigate();
 
+  //console.log(loginUserInfo);
   const handleInputs = (e) => {
     setIputs({ ...inputs, [e.target.name]: e.target.value });
   };
@@ -28,6 +34,7 @@ const Login = () => {
       const { email } = user;
       setLoginEmail(email);
       dispatch(isLogin({ email: email, group: "isAdmin" }));
+      navigate("/manager");
     } catch (error) {
       setLoginError({ status: true, code: error.code, msg: error.message });
       //console.log(loginError);

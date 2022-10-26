@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { Provider, useSelector } from "react-redux";
 import { playerStore } from "./redux/stores";
-import Main from "./pages/Main";
 
 function App() {
   const loginUser = useSelector((state) => state.loginAction.email);
@@ -16,8 +15,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/manager"
+          element={
+            loginUser != undefined ? (
+              <Provider store={playerStore}>
+                <Manager />
+              </Provider>
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
+        <Route path="/display" element={<Display />} />
+        <Route path="/referee" element={<Referee />} />
       </Routes>
     </BrowserRouter>
   );
