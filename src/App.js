@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import { Provider, useSelector } from "react-redux";
 import { playerStore } from "./redux/stores";
 import Main from "./pages/Main";
+import NewGame from "./pages/NewGame";
+import GameList from "./pages/GameList";
 
 function App() {
   const loginUser = useSelector((state) => state.loginAction.email);
@@ -16,7 +18,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main component={<NewGame />} />} />
+        <Route path="/newgame" element={<Main component={<NewGame />} />} />
+        <Route path="/gamelist" element={<Main component={<GameList />} />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

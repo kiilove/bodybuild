@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import std from "../img/logo/std.png";
 const MenuItem = [
-  { id: 1, title: "새 경기" },
-  { id: 3, title: "경기 목록" },
-  { id: 4, title: "심판" },
-  { id: 5, title: "선수" },
-  { id: 6, title: "관리자" },
+  { id: 1, title: "새 경기", link: "/newgame" },
+  { id: 3, title: "경기 목록", link: "/gamelist" },
+  { id: 4, title: "심판", link: "/referee" },
+  { id: 5, title: "선수", link: "/player" },
+  { id: 6, title: "관리자", link: "/admin" },
 ];
 const LeftMenus = () => {
   return (
@@ -17,7 +18,9 @@ const LeftMenus = () => {
               className="flex w-full h-14 gap-y-5 items-center align-middle justify-center "
               id={idx}
             >
-              <span className="flex">{item.title}</span>
+              <Link to={item.link}>
+                <span className="flex">{item.title}</span>
+              </Link>
             </div>
           ))}
       </div>

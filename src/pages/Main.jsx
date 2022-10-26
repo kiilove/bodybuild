@@ -102,7 +102,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Main = () => {
+const Main = (props) => {
   return (
     <div className="w-full h-screen bg-gradient-to-r from-gray-100 to-gray-300">
       <div className="mx-auto max-w-7xl  bg-white flex">
@@ -114,9 +114,7 @@ const Main = () => {
             <div className="flex max-w-lg">
               <LeftMenus />
             </div>
-            <div className="flex bg-slate-100 w-full">
-              <NewGame />
-            </div>
+            <div className="flex bg-slate-100 w-full">{props.component}</div>
           </div>
         </div>
       </div>
