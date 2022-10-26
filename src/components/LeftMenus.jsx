@@ -4,7 +4,7 @@ import std from "../img/logo/std.png";
 const MenuItem = [
   { id: 1, title: "새 경기", link: "/newgame" },
   { id: 3, title: "경기 목록", link: "/gamelist" },
-  { id: 4, title: "심판", link: "/referee" },
+  { id: 4, title: "심판", link: "/refereemanager" },
   { id: 5, title: "선수", link: "/player" },
   { id: 6, title: "관리자", link: "/admin" },
 ];
