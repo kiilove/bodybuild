@@ -5,7 +5,7 @@ const MenuItem = [
   { id: 1, title: "새 경기", link: "/newgame" },
   { id: 3, title: "경기 목록", link: "/gamelist" },
   { id: 4, title: "심판", link: "/refereemanager" },
-  { id: 5, title: "선수", link: "/player" },
+  { id: 5, title: "선수", link: "/playermanager" },
   { id: 6, title: "관리자", link: "/admin" },
 ];
 const LeftMenus = () => {

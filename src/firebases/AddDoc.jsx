@@ -4,6 +4,8 @@ import { db } from "../firebase";
 
 export const AddDoc = async (props) => {
   const propData = props.datas;
+  console.log(propData);
+
   try {
     const saveDoc = await setDoc(
       doc(db, props.documentName, props.collectionName),

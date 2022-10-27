@@ -12,11 +12,10 @@ import { AddDoc } from "../firebases/AddDoc";
 import { DefaultButton } from "../styles/Buttons";
 import { SpanTitle } from "../styles/Common";
 
-const RefereeNew = () => {
+const PlayerNew = () => {
   const [basicInputs, setBasicInputs] = useState({});
   const [newId, setNewId] = useState(0);
   const [imageFiles, setImageFiles] = useState([]);
-  const [downURL, setDownURL] = useState("");
 
   const handleInputs = (e) => {
     setBasicInputs({
@@ -68,12 +67,12 @@ const RefereeNew = () => {
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           //console.log("File available at", downloadURL);
-          setBasicInputs({ ...basicInputs, refProfile: downloadURL });
-          setDownURL(downloadURL);
+          setBasicInputs({ ...basicInputs, playerProfile: downloadURL });
+          console.log(basicInputs.playerId);
           AddDoc({
-            documentName: "referee",
-            collectionName: basicInputs.refId,
-            datas: { ...basicInputs, refProfile: downloadURL },
+            documentName: "player",
+            collectionName: String(basicInputs.playerId),
+            datas: { ...basicInputs, playerProfile: downloadURL },
           });
           //console.log(basicInputs);
         });
@@ -82,13 +81,13 @@ const RefereeNew = () => {
   };
   const getId = async () => {
     try {
-      const coll = collection(db, "referee");
-      const refereeCollectionSnapshot = getCountFromServer(coll);
-      const refereeCount = (await refereeCollectionSnapshot).data().count;
+      const coll = collection(db, "player");
+      const playerCollectionSnapshot = getCountFromServer(coll);
+      const playerCount = (await playerCollectionSnapshot).data().count;
       //console.log(refereeCount);
       //const refereeCount = refereeCollectionSnapshot.data().count;
-      setNewId(refereeCount + 1);
-      setBasicInputs({ ...basicInputs, refId: newId });
+      setBasicInputs({ ...basicInputs, playerId: playerCount + 1 });
+      console.log(basicInputs);
     } catch (error) {
       console.log(error.message);
     }
@@ -164,17 +163,17 @@ const RefereeNew = () => {
     <div className="flex min-w-full p-10 box-border flex-wrap ">
       <div className="flex flex-col flex-wrap w-full">
         <div className="flex w-full">
-          <SpanTitle type="default" title="심판등록" />
+          <SpanTitle type="default" title="선수등록" />
         </div>
         <div className="flex py-5 w-full ">
           <div className="flex w-full box-border flex-wrap flex-col gap-y-3">
             {UploadInput}
-            {BasicInput({ title: "ID", name: "refId" })}
-            {BasicInput({ title: "이름", name: "refName" })}
-            {BasicInput({ title: "지역", name: "refLocation" })}
-            {BasicInput({ title: "이메일", name: "refEmail" })}
-            {BasicInput({ title: "연락처", name: "refTel" })}
-            {BasicInput({ title: "메모", name: "refMemo" })}
+
+            {BasicInput({ title: "이름", name: "playerName" })}
+            {BasicInput({ title: "지역", name: "playerLocation" })}
+            {BasicInput({ title: "이메일", name: "playerEmail" })}
+            {BasicInput({ title: "연락처", name: "playerTel" })}
+            {BasicInput({ title: "메모", name: "playerMemo" })}
           </div>
         </div>
         <div className="flex w-full justify-end gap-x-5">
@@ -194,4 +193,4 @@ const RefereeNew = () => {
   );
 };
 
-export default RefereeNew;
+export default PlayerNew;

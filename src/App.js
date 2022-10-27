@@ -11,6 +11,7 @@ import Main from "./pages/Main";
 import NewGame from "./pages/NewGame";
 import GameList from "./pages/GameList";
 import RefereeManager from "./pages/RefereeManager";
+import PlayerManager from "./pages/PlayerManager";
 
 function App() {
   const loginUser = useSelector((state) => state.loginAction.email);
@@ -26,6 +27,10 @@ function App() {
         <Route
           path="/refereemanager"
           element={<Main component={<RefereeManager />} />}
+        />
+        <Route
+          path="/playermanager"
+          element={<Main component={<PlayerManager />} />}
         />
       </Routes>
     </BrowserRouter>
