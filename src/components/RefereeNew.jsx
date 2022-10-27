@@ -72,7 +72,7 @@ const RefereeNew = () => {
           setDownURL(downloadURL);
           AddDoc({
             documentName: "referee",
-            collectionName: basicInputs.refId,
+            collectionName: String(basicInputs.refId),
             datas: { ...basicInputs, refProfile: downloadURL },
           });
           //console.log(basicInputs);
@@ -87,8 +87,8 @@ const RefereeNew = () => {
       const refereeCount = (await refereeCollectionSnapshot).data().count;
       //console.log(refereeCount);
       //const refereeCount = refereeCollectionSnapshot.data().count;
-      setNewId(refereeCount + 1);
-      setBasicInputs({ ...basicInputs, refId: newId });
+
+      setBasicInputs({ ...basicInputs, refId: refereeCount + 1 });
     } catch (error) {
       console.log(error.message);
     }
@@ -169,7 +169,6 @@ const RefereeNew = () => {
         <div className="flex py-5 w-full ">
           <div className="flex w-full box-border flex-wrap flex-col gap-y-3">
             {UploadInput}
-            {BasicInput({ title: "ID", name: "refId" })}
             {BasicInput({ title: "이름", name: "refName" })}
             {BasicInput({ title: "지역", name: "refLocation" })}
             {BasicInput({ title: "이메일", name: "refEmail" })}
