@@ -28,12 +28,17 @@ const RefereeNew = () => {
 
   const handleSave = async () => {
     //console.log(basicInputs);
-    await handleImageUpload();
-    await AddDoc({
-      documentName: "referee",
-      collectionName: basicInputs.refId,
-      datas: basicInputs,
-    });
+    try {
+      const downURL = await handleImageUpload();
+      console.log(downURL);
+      await AddDoc({
+        documentName: "referee",
+        collectionName: basicInputs.refId,
+        datas: basicInputs,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
 
     //setBasicInputs({});
   };
@@ -70,7 +75,8 @@ const RefereeNew = () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           //console.log("File available at", downloadURL);
           setBasicInputs({ ...basicInputs, refProfile: downloadURL });
-          console.log(basicInputs);
+          return downloadURL;
+          //console.log(basicInputs);
         });
       }
     );
