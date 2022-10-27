@@ -10,6 +10,7 @@ import { playerStore } from "./redux/stores";
 import Main from "./pages/Main";
 import NewGame from "./pages/NewGame";
 import GameList from "./pages/GameList";
+import RefereeManager from "./pages/RefereeManager";
 
 function App() {
   const loginUser = useSelector((state) => state.loginAction.email);
@@ -19,9 +20,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main component={<NewGame />} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/newgame" element={<Main component={<NewGame />} />} />
         <Route path="/gamelist" element={<Main component={<GameList />} />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/refereemanager"
+          element={<Main component={<RefereeManager />} />}
+        />
       </Routes>
     </BrowserRouter>
   );

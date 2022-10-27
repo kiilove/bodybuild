@@ -104,17 +104,19 @@ function classNames(...classes) {
 
 const Main = (props) => {
   return (
-    <div className="w-full h-screen bg-gradient-to-r from-gray-100 to-gray-300">
+    <div className="w-full h-screen min-h-max bg-gradient-to-r from-gray-100 to-gray-300 flex-wrap">
       <div className="mx-auto max-w-7xl  bg-white flex">
         <div className="flex flex-col w-full">
           <div className="flex w-full bg-slate-400">
             <Header />
           </div>
-          <div className="flex w-full">
+          <div className="flex w-full h-full">
             <div className="flex max-w-lg">
               <LeftMenus />
             </div>
-            <div className="flex bg-slate-100 w-full">{props.component}</div>
+            <div className="flex bg-slate-100 w-full h-full">
+              {props.component}
+            </div>
           </div>
         </div>
       </div>
