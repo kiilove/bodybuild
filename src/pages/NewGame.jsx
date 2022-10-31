@@ -17,9 +17,9 @@ const NewGame = () => {
   const handleSave = () => {
     console.log(basicInputs);
     AddDoc({
-      documentName: basicInputs.cupTitle,
-      collectionName: basicInputs.cupCount,
-      datas: basicInputs,
+      documentName: "games",
+      collectionName: basicInputs.cupTitle + basicInputs.cupCount,
+      datas: { ...basicInputs, cupState: "준비중" },
     });
   };
   const inputList = [

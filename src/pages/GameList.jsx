@@ -5,6 +5,7 @@ import { SpanTitle } from "../styles/Common";
 import { GetDocs } from "../firebases/getDoc";
 import { db } from "../firebase";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { Link, useParams } from "react-router-dom";
 
 const GameList = () => {
   const [resData, setResData] = useState([]);
@@ -24,7 +25,7 @@ const GameList = () => {
   };
 
   useEffect(() => {
-    getList({ documentName: "경기용인보디빌딩대회" });
+    getList({ documentName: "games" });
   }, []);
 
   return (
@@ -54,9 +55,15 @@ const GameList = () => {
                     상태 : {item.basicInfo.cupState}
                   </p>
                   <div className="flex w-full justify-end mt-1 gap-x-5">
-                    <Button color="none">
-                      <PencilSquareIcon className=" h-5 w-5" />
-                    </Button>
+                    <Link
+                      to={`/gameview/${
+                        item.basicInfo.cupTitle + item.basicInfo.cupCount
+                      }`}
+                    >
+                      <Button color="none">
+                        <PencilSquareIcon className=" h-5 w-5" />
+                      </Button>
+                    </Link>
                     <Button color="failure">
                       <TrashIcon className="h-5 w-5" />
                     </Button>
