@@ -125,7 +125,7 @@ const RefereeSelect = () => {
                   type="checkbox"
                   tabIndex={-1}
                   checked={checked.indexOf(value.basicInfo.refId) !== -1}
-                  id={`itemsCheckbox-${value.basicInfo.refId}`}
+                  id={`itemsRefereeCheckbox-${value.basicInfo.refId}`}
                   onClick={handleToggle(value)}
                   className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 hidden"
                 />
@@ -133,7 +133,7 @@ const RefereeSelect = () => {
               <div className="ml-2 text-md w-full h-full">
                 <label
                   id
-                  htmlFor={`itemsCheckbox-${value.basicInfo.refId}`}
+                  htmlFor={`itemsRefereeCheckbox-${value.basicInfo.refId}`}
                   className="font-medium text-gray-900 dark:text-gray-300 w-full h-full flex "
                 >
                   <div className="flex w-full items-center gap-x-3">
