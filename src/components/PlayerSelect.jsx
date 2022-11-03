@@ -13,7 +13,7 @@ function intersection(a, b) {
   //console.log(a);
   return a.filter((value) => b.indexOf(value) !== -1);
 }
-const RefereeSelect = () => {
+const PlayerSelect = () => {
   const [checked, setChecked] = useState([]);
   const [pool, setPool] = useState([]);
   const [assign, setAssign] = useState([]);
@@ -59,35 +59,6 @@ const RefereeSelect = () => {
     setAssign([]);
   };
 
-  // const handleAllLeft = () => {
-  //   setLeft(left.concat(right));
-  //   setRight([]);
-  // };
-
-  // const handleAllRight = () => {
-  //   setRight(right.concat(left));
-  //   setLeft([]);
-  // };
-
-  // const handleCheckedRight = () => {
-  //   setRight(right.concat(leftChecked));
-  //   setLeft(not(left, leftChecked));
-  //   setChecked(not(checked, leftChecked));
-  //   console.log(right);
-  // };
-
-  // const handleCheckedLeft = () => {
-  //   setLeft(left.concat(rightChecked));
-  //   setRight(not(right, rightChecked));
-  //   setChecked(not(checked, rightChecked));
-  //   console.log(left);
-  // };
-
-  // const handleAllLeft = () => {
-  //   setLeft(left.concat(right));
-  //   setRight([]);
-  // };
-
   const getList = async (props) => {
     let dataArray = [];
     try {
@@ -105,7 +76,7 @@ const RefereeSelect = () => {
   };
 
   useEffect(() => {
-    getList({ documentName: "referee" });
+    getList({ documentName: "player" });
     //console.log(resData);
   }, []);
 
@@ -124,8 +95,8 @@ const RefereeSelect = () => {
                 <input
                   type="checkbox"
                   tabIndex={-1}
-                  checked={checked.indexOf(value.basicInfo.refId) !== -1}
-                  id={`itemsCheckbox-${value.basicInfo.refId}`}
+                  checked={checked.indexOf(value.basicInfo.playerId) !== -1}
+                  id={`itemsPlayerCheckbox-${value.basicInfo.playerId}`}
                   onClick={handleToggle(value)}
                   className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 hidden"
                 />
@@ -133,22 +104,22 @@ const RefereeSelect = () => {
               <div className="ml-2 text-md w-full h-full">
                 <label
                   id
-                  htmlFor={`itemsCheckbox-${value.basicInfo.refId}`}
+                  htmlFor={`itemsPlayerCheckbox-${value.basicInfo.playerId}`}
                   className="font-medium text-gray-900 dark:text-gray-300 w-full h-full flex "
                 >
                   <div className="flex w-full items-center gap-x-3">
                     <div className="flex">
                       <img
-                        src={value.basicInfo.refProfile}
+                        src={value.basicInfo.playerProfile}
                         className="w-10 rounded-full"
                       />
                     </div>
                     <div className="flex flex-col">
                       <p className="text-md font-semibold text-gray-700">
-                        {value.basicInfo.refName}
+                        {value.basicInfo.playerName}
                       </p>
                       <span className="text-sm text-gray-500">
-                        {value.basicInfo.refTel}
+                        {value.basicInfo.playerTel}
                       </span>
                     </div>
                   </div>
@@ -165,7 +136,7 @@ const RefereeSelect = () => {
     <div className="flex flex-col w-full divide-y-2 gap-y-2">
       <div className="flex w-full px-10">
         <div className="flex w-1/2 items-center align-middle">
-          <SpanTitle type="subTitle" title="심판" />
+          <SpanTitle type="subTitle" title="출전선수" />
         </div>
         <div className="flex w-1/2 justify-end items-center align-middle">
           <button className={OutlineButton({ type: "default" })}>
@@ -221,4 +192,4 @@ const RefereeSelect = () => {
   );
 };
 
-export default RefereeSelect;
+export default PlayerSelect;

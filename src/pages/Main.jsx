@@ -104,7 +104,7 @@ function classNames(...classes) {
 
 const Main = (props) => {
   return (
-    <div className="w-full h-screen min-h-max bg-gradient-to-r from-gray-100 to-gray-300 flex-wrap">
+    <div className="w-full h-full min-h-max bg-gradient-to-r from-gray-100 to-gray-300 flex-wrap">
       <div className="mx-auto max-w-7xl  bg-white flex">
         <div className="flex flex-col w-full">
           <div className="flex w-full bg-slate-400">
