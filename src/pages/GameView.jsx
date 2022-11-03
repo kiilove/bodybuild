@@ -1,6 +1,7 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PlayerSelect from "../components/PlayerSelect";
 import RefereeSelect from "../components/RefereeSelect";
 import { db } from "../firebase";
 import { SpanTitle } from "../styles/Common";
@@ -125,14 +126,20 @@ const GameView = (props) => {
               </div>
             </div>
           </div>
-          <div className="flex w-full bg-white px-10 rounded-lg shadow-md">
+          <div className="flex w-full bg-white rounded-lg shadow-md">
             <div className="flex py-5 w-full">
               <div className="flex box-border flex-wrap flex-col gap-y-3 w-full ">
                 <div className="flex w-full">
-                  <SpanTitle type="subTitle" title="심판" />
-                </div>
-                <div className="flex w-full">
                   <RefereeSelect />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex w-full bg-white rounded-lg shadow-md">
+            <div className="flex py-5 w-full">
+              <div className="flex box-border flex-wrap flex-col gap-y-3 w-full ">
+                <div className="flex w-full">
+                  <PlayerSelect />
                 </div>
               </div>
             </div>
