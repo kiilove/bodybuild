@@ -27,7 +27,7 @@ const NewGame = () => {
     { title: "회차", name: "cupCount" },
     { title: "주최기관", name: "cupOrg" },
     { title: "경기장소", name: "cupLocation" },
-    { title: "주최일자", name: "cupDate" },
+    { title: "경기일자", name: "cupDate" },
   ];
   const BasicInput = (input) => (
     <div className={"flex w-2/3 bg-slate-50"}>

@@ -9,6 +9,13 @@ export const SpanTitle = (props) => {
         </h1>
       );
       break;
+    case "subTitle":
+      return (
+        <h1 className="mb-1 text-lg font-semibold text-gray-600 dark:text-white">
+          <span>{props.title}</span>
+        </h1>
+      );
+      break;
 
     default:
       break;

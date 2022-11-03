@@ -88,7 +88,7 @@ const RefereeNew = () => {
       //console.log(refereeCount);
       //const refereeCount = refereeCollectionSnapshot.data().count;
 
-      setBasicInputs({ ...basicInputs, refId: refereeCount + 1 });
+      setBasicInputs({ ...basicInputs, refId: String(refereeCount + 1) });
     } catch (error) {
       console.log(error.message);
     }
